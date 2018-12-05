@@ -1,24 +1,23 @@
-package org.codingixd.appairend.RandomForestDemo;
+package org.codingixd.appairend.DecisionTreeDemo;
 
 import weka.classifiers.Evaluation;
-import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
-import weka.core.converters.ConverterUtils.DataSource;
+import weka.core.converters.ConverterUtils;
+import weka.classifiers.trees.RandomTree;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Normalize;
 
 import java.util.Random;
 
-public class RandomForestTest {
+public class DecisionTree {
 
     public static void main(String[] args) throws Exception{
+        String inputPath = "./data/segment-test.arff";
 
-        String inputPath = "./data/soybean.arff";
-        // Read Data
         Instances ds = null;
 
         try {
-            ds = DataSource.read(inputPath);
+            ds = ConverterUtils.DataSource.read(inputPath);
         }catch(Exception e){
             System.err.println(e);
             System.exit(0);
@@ -29,9 +28,6 @@ public class RandomForestTest {
         }
 
         Filter filter = new Normalize();
-
-        // Build classifier
-
         int trainSize = (int) Math.round(ds.numInstances() * 0.8);
         int testSize = ds.numInstances() - trainSize;
 
@@ -43,14 +39,17 @@ public class RandomForestTest {
         Instances traindataset = new Instances(datasetnor, 0, trainSize);
         Instances testdataset = new Instances(datasetnor, trainSize, testSize);
 
-        RandomForest rf = new RandomForest();
-        rf.buildClassifier(traindataset);
+        RandomTree tree = new RandomTree();
 
-        // evaluate model
+        tree.buildClassifier(traindataset);
+
         Evaluation eval = new Evaluation(traindataset);
-        eval.evaluateModel(rf, testdataset);
+        eval.evaluateModel(tree, testdataset);
 
         System.out.println(eval.toSummaryString());
+
+        System.out.println(tree.graph());
+
 
     }
 }

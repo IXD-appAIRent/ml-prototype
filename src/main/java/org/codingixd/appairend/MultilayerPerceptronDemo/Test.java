@@ -53,9 +53,9 @@ public class Test {
         mg.saveModel(ann, MODElPATH);
 
         //classifiy a single instance
-        ModelClassifier cls = new ModelClassifier();
-        String classname =cls.classifiy(Filter.useFilter(cls.createInstance(1.6, 0.2, 0), filter), MODElPATH);
-        System.out.println("\n The class name for the instance with petallength = 1.6 and petalwidth =0.2 is  " +classname);
+        //ModelClassifier cls = new ModelClassifier();
+        //String classname =cls.classifiy(Filter.useFilter(cls.createInstance(1.6, 0.2, 0), filter), MODElPATH);
+        //System.out.println("\n The class name for the instance with petallength = 1.6 and petalwidth =0.2 is  " +classname);
 
     }
 
