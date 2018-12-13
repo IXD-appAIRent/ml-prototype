@@ -1,9 +1,9 @@
 package org.codingixd.appairend.DecisionTreeDemo;
 
 import weka.classifiers.Evaluation;
+import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
-import weka.classifiers.trees.RandomTree;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Normalize;
 
@@ -12,7 +12,7 @@ import java.util.Random;
 public class DecisionTree {
 
     public static void main(String[] args) throws Exception{
-        String inputPath = "./data/segment-test.arff";
+        String inputPath = "./data/pm10.arff";
 
         Instances ds = null;
 
@@ -39,7 +39,7 @@ public class DecisionTree {
         Instances traindataset = new Instances(datasetnor, 0, trainSize);
         Instances testdataset = new Instances(datasetnor, trainSize, testSize);
 
-        RandomTree tree = new RandomTree();
+        J48 tree = new J48();
 
         tree.buildClassifier(traindataset);
 
@@ -47,9 +47,6 @@ public class DecisionTree {
         eval.evaluateModel(tree, testdataset);
 
         System.out.println(eval.toSummaryString());
-
-        System.out.println(tree.graph());
-
 
     }
 }

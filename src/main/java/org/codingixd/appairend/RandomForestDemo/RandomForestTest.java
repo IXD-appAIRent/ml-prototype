@@ -6,6 +6,7 @@ import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Normalize;
+import weka.core.Debug;
 
 import java.util.Random;
 
@@ -13,7 +14,7 @@ public class RandomForestTest {
 
     public static void main(String[] args) throws Exception{
 
-        String inputPath = "./data/soybean.arff";
+        String inputPath = "./data/pm10.arff";
         // Read Data
         Instances ds = null;
 
@@ -35,7 +36,7 @@ public class RandomForestTest {
         int trainSize = (int) Math.round(ds.numInstances() * 0.8);
         int testSize = ds.numInstances() - trainSize;
 
-        ds.randomize(new Random());
+        ds.randomize(new Debug.Random(1));
 
         filter.setInputFormat(ds);
         Instances datasetnor = Filter.useFilter(ds, filter);
