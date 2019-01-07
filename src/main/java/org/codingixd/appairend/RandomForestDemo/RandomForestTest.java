@@ -8,13 +8,12 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Normalize;
 import weka.core.Debug;
 
-import java.util.Random;
 
 public class RandomForestTest {
 
     public static void main(String[] args) throws Exception{
 
-        String inputPath = "./data/pm10.arff";
+        String inputPath = "./data/ml_all.arff";
         // Read Data
         Instances ds = null;
 
@@ -52,6 +51,14 @@ public class RandomForestTest {
         eval.evaluateModel(rf, testdataset);
 
         System.out.println(eval.toSummaryString());
+        double[][] test = eval.confusionMatrix();
+
+        for(double[] t: test){
+            for (double d: t){
+                System.out.print(d + " ");
+            }
+            System.out.println();
+        }
 
     }
 }

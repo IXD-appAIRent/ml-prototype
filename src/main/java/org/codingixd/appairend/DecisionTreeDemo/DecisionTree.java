@@ -12,7 +12,7 @@ import java.util.Random;
 public class DecisionTree {
 
     public static void main(String[] args) throws Exception{
-        String inputPath = "./data/pm10.arff";
+        String inputPath = "./data/ml_all.arff";
 
         Instances ds = null;
 
@@ -47,6 +47,12 @@ public class DecisionTree {
         eval.evaluateModel(tree, testdataset);
 
         System.out.println(eval.toSummaryString());
+
+        for(double [] dlist : eval.confusionMatrix()) {
+            for (double d : dlist)
+                System.out.print(d + " ");
+            System.out.println();
+        }
 
     }
 }

@@ -18,7 +18,7 @@ import weka.filters.unsupervised.attribute.Normalize;
 
 public class Test {
 
-    public static final String DATASETPATH = "./data/pm10.arff";
+    public static final String DATASETPATH = "./data/ml_all.arff";
 
     public static void main(String[] args) throws Exception {
 
@@ -46,6 +46,8 @@ public class Test {
 
         // Evaluate classifier with test dataset
         String evalsummary = mg.evaluateModel(ann, traindataset, testdataset);
+
+
         System.out.println("Evaluation: " + evalsummary);
     }
 
