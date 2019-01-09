@@ -13,7 +13,7 @@ public class RandomForestTest {
 
     public static void main(String[] args) throws Exception{
 
-        String inputPath = "./data/ml_all.arff";
+        String inputPath = "./data/ml_traffic.arff";
         // Read Data
         Instances ds = null;
 
